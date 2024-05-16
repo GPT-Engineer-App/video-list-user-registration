@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, VStack, HStack, Text, Input, Button, FormControl, FormLabel, List, ListItem, Box, AspectRatio } from "@chakra-ui/react";
+import { Container, VStack, HStack, Text, Input, Button, FormControl, FormLabel, Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { FaVideo, FaUserPlus } from "react-icons/fa";
 
 const Index = () => {
@@ -43,18 +43,22 @@ const Index = () => {
               视频列表
             </Text>
           </HStack>
-          <List spacing={4}>
-            {videos.map((video) => (
-              <ListItem key={video.id}>
-                <Text fontSize="lg" fontWeight="bold">
-                  {video.title}
-                </Text>
-                <AspectRatio ratio={16 / 9}>
-                  <iframe title={video.title} src={video.url} allowFullScreen />
-                </AspectRatio>
-              </ListItem>
-            ))}
-          </List>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Title</Th>
+                <Th>URL</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {videos.map((video) => (
+                <Tr key={video.id}>
+                  <Td>{video.title}</Td>
+                  <Td>{video.url}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
         </Box>
 
         <Box w="full">
